@@ -10,6 +10,8 @@ const UserRoutes = require('./routes/user');
 var app = express();
 const port = process.env.PORT || 3000;
 
+app.use(express.static(__dirname + '/public/dist/voice-command'));
+
 app.use(bodyParser.json());
 app.use('/', TodoRoutes.routes);
 app.use('/', UserRoutes.routes);
