@@ -5,6 +5,7 @@ import { ListeningInitCommand } from "./ListeningInitCommand";
 import { CreateTodoCommand } from "./CreateTodoCommand";
 import { TodoService } from "./todo.service";
 import { ReflectiveInjector } from "@angular/core";
+import { CommandGetAllTodosCommand } from "./CommandGetAllTodosCommand";
 
 export class ListeningCommand implements ICommandState {
     CallCommand(wrapper: ListenerInterpreter, command: String) {
@@ -14,17 +15,22 @@ export class ListeningCommand implements ICommandState {
             break;
 
             case CommandStatesConstants.GetAllTodoCommand:
-                throw new Error('Not implemented');
+                wrapper.SetState(new CommandGetAllTodosCommand(this.GetTodoService()));
+                wrapper.Current.CallCommand(wrapper, '');
             break;
 
             case CommandStatesConstants.CreateTodoCommand:
-                const injector = ReflectiveInjector.resolveAndCreate([TodoService])
-                wrapper.SetState(new CreateTodoCommand(injector.get(TodoService)));
+                wrapper.SetState(new CreateTodoCommand(this.GetTodoService()));
             break;
 
             case CommandStatesConstants.DeleteTodoCommand:
                 throw new Error('Not implemented');
-            break;
+            // break;
         }
+    }
+
+    private GetTodoService(): TodoService {
+        let injector = ReflectiveInjector.resolveAndCreate([TodoService]);
+        return injector.get(TodoService);
     }
 }

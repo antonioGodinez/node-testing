@@ -1,17 +1,17 @@
 export class CommandStatesConstants {
-    static get InitCommand(): String { 
+    static get InitCommand(): string { 
         return "Mister snow" 
     };
 
-    static get CreateTodoCommand(): String {
+    static get CreateTodoCommand(): string {
         return "Create to do";
     }
 
-    static get GetAllTodoCommand(): String {
+    static get GetAllTodoCommand(): string {
         return "Get all to do";
     }
 
-    static get DeleteTodoCommand(): String {
+    static get DeleteTodoCommand(): string {
         return "Delete to do";
     }
 }
