@@ -13,6 +13,7 @@ export class ListenerInterpreter {
     Current: ICommandState;
     SpeechListener: SpeechToText;
     CurrentClassification: string;
+    CurrentState: string;
 
     todos: Todo[];
 
@@ -31,20 +32,12 @@ export class ListenerInterpreter {
     }
 
     SetState(state: ICommandState) {
-        let stateName = state.GetCommandName();
-        console.log(`On state: ${stateName}`);
+        this.CurrentState = state.GetCommandName();
+        console.log(`On state: ${this.CurrentState}`);
         this.Current = state;
     }
 
     StartListening(): void {
         this.SpeechListener.startListening();
-    }
-
-    private OnStopTalking(text): void {
-        console.log(text);
-        this.classifier.GetClassification(text).subscribe((classification: string) => {
-            this.CurrentClassification = classification;
-            this.Current.CallCommand(this, this.CurrentClassification);
-        });
     }
 }
