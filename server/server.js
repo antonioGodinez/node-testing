@@ -10,7 +10,8 @@ const ClassifierRoutes = require('./routes/classifier');
 var app = express();
 const port = process.env.PORT || 3000;
 
-app.use(express.static(__dirname + '/public/dist/voice-command'));
+console.log(process.env.NODE_ENV);
+app.use(express.static(__dirname + (process.env.NODE_ENV === 'production' || '/public/dist/voice-command')));
 
 app.use(bodyParser.json());
 app.use('/', TodoRoutes.routes);
