@@ -3,6 +3,10 @@ export class CommandStatesConstants {
         return "Mister snow" 
     };
 
+    static get ListeningForCommands(): string {
+        return 'Listening for commands'
+    };
+
     static get CreateTodoCommand(): string {
         return "Create to do";
     }

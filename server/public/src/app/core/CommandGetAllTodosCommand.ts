@@ -23,4 +23,6 @@ export class CommandGetAllTodosCommand implements ICommandState{
             return wrapper.SetState(new ListeningInitCommand());
         });
     }
+
+    GetCommandName: () => 'CommandGetAllTodosCommand';
 }

@@ -1,23 +1,14 @@
-import { Metaphone, BayesClassifier } from 'natural';
-import { CommandStatesConstants } from './CommandStatesConstants';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
+import { Observable } from 'rxjs/internal/Observable';
+
+@Injectable({
+    providedIn: 'root'
+  })
 export class SpeechClassification {
-    private classifier: BayesClassifier;
 
-    constructor() {
-        this.classifier = new BayesClassifier();
+    constructor(private http: HttpClient) { }
 
-        this.TrainClassifier();
-    }
-
-    private TrainClassifier(): void {
-        this.classifier.addDocument('Mister slave', CommandStatesConstants.InitCommand);
-
-        this.classifier.addDocument('New to do', CommandStatesConstants.CreateTodoCommand);
-        this.classifier.addDocument('Create to do', CommandStatesConstants.CreateTodoCommand);
-        this.classifier.addDocument('Insert to do', CommandStatesConstants.CreateTodoCommand);
-
-        this.classifier.addDocument('Get all', CommandStatesConstants.GetAllTodoCommand);
-        this.classifier.addDocument('All to do', CommandStatesConstants.GetAllTodoCommand);
-    }
+    GetClassification:(toPredict: string) => Observable<string> = (toPredict) => this.http.get<string>(`/classifier/${toPredict}`);
 }

@@ -27,4 +27,6 @@ export class CreateTodoCommand implements ICommandState {
             return wrapper.SetState(new ListeningInitCommand());
         });
     }
+
+    GetCommandName: () => 'CreateTodoCommand';
 }

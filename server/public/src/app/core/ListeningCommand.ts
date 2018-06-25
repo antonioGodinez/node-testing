@@ -25,9 +25,13 @@ export class ListeningCommand implements ICommandState {
 
             case CommandStatesConstants.DeleteTodoCommand:
                 throw new Error('Not implemented');
-            // break;
+
+            default:
+                wrapper.SetState(new ListeningInitCommand());
         }
     }
+
+    GetCommandName: () => 'Listening for commands';
 
     private GetTodoService(): TodoService {
         let injector = ReflectiveInjector.resolveAndCreate([TodoService]);

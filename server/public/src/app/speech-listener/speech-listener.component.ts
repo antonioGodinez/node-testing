@@ -1,25 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import * as SpeechToText from 'speech-to-text';
+import { ListenerInterpreter } from './../core/ListenerInterpreter';
+import { ReflectiveInjector } from "@angular/core";
 
 @Component({
   selector: 'app-speech-listener',
   templateUrl: './speech-listener.component.html',
   styleUrls: ['./speech-listener.component.css']
 })
-export class SpeechListenerComponent implements OnInit {
-
-  constructor() { }
+export class SpeechListenerComponent implements OnInit {  
+  constructor(private listener: ListenerInterpreter) {
+    
+   }
 
   ngOnInit() {
-    const onAnythingSaid = text => console.log(`OnAnythingSaid: ${text}`);
-    const onFinalised = text => console.log(`OnFinalised: ${text}`);
-
-    try {
-      const listener = new SpeechToText.default(onAnythingSaid, onFinalised);
-      listener.startListening();
-    } catch(error) {
-      console.log(error);
-    } 
+    this.listener.StartListening();
   }
-
 }
