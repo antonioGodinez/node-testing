@@ -6,14 +6,18 @@
   "scripts": {
     "start": "node server/server.js",
     "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha server/**/*.test.js",
-    "test-watch": "nodemon --exec \"npm test\""
+    "test-watch": "nodemon --exec \"npm test\"",
+    "postinstall": "ng build --aot -prod"
   },
   "engines": {
-    "node": "10.2.0"
+    "node": "10.2.0",
+    "npm": "5.6.0"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@angular/cli": "6.0.8",
+    "@angular/compiler-cli": "6.0.6",
     "@types/natural": "0.2.33",
     "body-parser": "1.18.3",
     "express": "4.14.0",
@@ -26,6 +30,8 @@
     "wordnet-db": "3.1.6"
   },
   "devDependencies": {
+    "@angular/cli": "6.0.8",
+    "@angular/compiler-cli": "6.0.6",
     "expect": "23.1.0",
     "mocha": "5.2.0",
     "nodemon": "1.17.5",
