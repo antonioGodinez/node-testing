@@ -21,6 +21,7 @@ routes.post('/todos', (req, res) => {
 });
 
 routes.get('/todos', (req, res) => {
+    console.log('Inside of TODOS');
     Todo.find().then((todos) => {
         res.send({ todos });
     }).catch((e) => {
