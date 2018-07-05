@@ -11,7 +11,7 @@ var app = express();
 const port = process.env.PORT || 3000;
 
 console.log(process.env.NODE_ENV);
-app.use(express.static(__dirname + (process.env.NODE_ENV ? '/public' : '/public/dist/voice-command')));
+// app.use(express.static(__dirname + (process.env.NODE_ENV ? '/public' : '/public/dist/voice-command')));
 
 app.use(bodyParser.json());
 app.use('/', TodoRoutes.routes);
@@ -20,6 +20,7 @@ app.use('/', ClassifierRoutes.routes);
 
 app.listen(port, () => {
     console.log(`Started on port ${port}`);
+    console.log(`Db ${process.env.MONGODB_URI}`);
 });
 
 module.exports = { app };

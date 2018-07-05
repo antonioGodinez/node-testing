@@ -10,7 +10,6 @@ routes.get('/classifier/:expression', (req, res) => {
     let expression = req.params.expression;
 
     return res.json(nbc.predict(expression)).send();
-    // return res.send();
 });
 
 function consolidate() {
