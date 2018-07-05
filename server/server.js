@@ -1,4 +1,5 @@
 require('./../config/config');
+require('./db/mongoose');
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -20,7 +21,6 @@ app.use('/', ClassifierRoutes.routes);
 
 app.listen(port, () => {
     console.log(`Started on port ${port}`);
-    console.log(`Db ${process.env.MONGODB_URI}`);
 });
 
 module.exports = { app };
