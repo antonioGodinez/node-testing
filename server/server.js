@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const TodoRoutes = require('./routes/todo');
 const UserRoutes = require('./routes/user');
 const ClassifierRoutes = require('./routes/classifier');
+const HoundifyRoutes = require('./routes/houndify.router');
 
 var app = express();
 const port = process.env.PORT || 3000;
@@ -18,6 +19,7 @@ app.use(bodyParser.json());
 app.use('/', TodoRoutes.routes);
 app.use('/', UserRoutes.routes);
 app.use('/', ClassifierRoutes.routes);
+app.use('/', HoundifyRoutes.routes);
 
 app.listen(port, () => {
     console.log(`Started on port ${port}`);
